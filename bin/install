@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# install
+#
+# Install project dependencies and packages
+
+# Stop on errors, undefined variables, and errors in pipelines
+set -Eeuo pipefail
+
+# Change to the directory containing this script
+cd "$(dirname "${BASH_SOURCE[0]}")"/..
+
+# Create virtual environment if it doesn't exist
+if [ ! -d "env" ]; then
+  echo "+ python3 -m venv env"
+  python3 -m venv env
+else
+  echo "Virtual environment already exists"
+fi
+
+# Activate virtual environment
+echo "+ source env/bin/activate"
+# shellcheck disable=SC1091
+source env/bin/activate
+
+# Install requirements
+echo "+ pip install -r requirements.txt"
+pip install -r requirements.txt
+
+# Install index_server package in editable mode
+echo "+ pip install -e index_server"
+pip install -e index_server
+
+# Install search_server package in editable mode
+echo "+ pip install -e search_server"
+pip install -e search_server
+
+echo "Installation complete!"
+
