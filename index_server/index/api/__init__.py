@@ -1,2 +1,1 @@
-"""Index server REST API."""
-from index.api.main import app
+"""API package for index server."""
