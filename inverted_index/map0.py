@@ -10,7 +10,7 @@ for line in sys.stdin:
     filename, html_content = line.split("\t", 1)
     
     # Removing non-alphanumeric characters & converting to lowercase
-    text = re.sub(r"[^a-zA-Z0-9\s]+", " ", html_content)
+    text = re.sub(r"[^a-zA-Z0-9 ]+", "", html_content)
     text = text.casefold()
     
     # Splitting text into whitespace-delimited terms
